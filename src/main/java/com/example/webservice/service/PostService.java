@@ -1,6 +1,7 @@
 package com.example.webservice.service;
 
 import com.example.webservice.model.Post;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,6 +18,9 @@ import java.util.List;
 public class PostService {
     private final RestTemplate restTemplate;
 
+    @Value("${api.jsonplaceholder}")
+    private String api;
+
     public PostService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -25,6 +29,7 @@ public class PostService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<List<Post>> entity = new HttpEntity<>(httpHeaders);
-        List<Post> result = restTemplate.exchange("", HttpMethod.GET,entity,List.class).getBody();
+        List<Post> result = restTemplate.exchange(this.api+"/posts", HttpMethod.GET,entity,List.class).getBody();
+        return  result;
     }
 }
