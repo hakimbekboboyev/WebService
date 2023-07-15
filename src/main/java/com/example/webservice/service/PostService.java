@@ -30,6 +30,12 @@ public class PostService {
         HttpEntity<List<Post>> entity = new HttpEntity<>(httpHeaders);
         List<Post> result = restTemplate.exchange(this.api+"/posts", HttpMethod.GET,entity,List.class).getBody();
 
+
+        return result;
+    }
+
+    public ResponseEntity findAllEntity(){
+        List<Post> result = findAll();
         PostEntity postEntity = new PostEntity();
         for (Post post : result) {
             postEntity.setId(Math.toIntExact(post.getId()));
@@ -39,7 +45,6 @@ public class PostService {
             postRepository.save(postEntity);
 
         }
-        return result;
     }
 
 
