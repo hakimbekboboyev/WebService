@@ -18,7 +18,7 @@ import java.util.List;
 public class PostService {
     private final RestTemplate restTemplate;
 
-    @Value("${api.jsonplaceholder}")
+    @Value("${api.placeholder}")
     private String api;
 
     public PostService(RestTemplate restTemplate) {
