@@ -1,9 +1,11 @@
 package com.example.webservice.controller;
 
+import com.example.webservice.entity.PostEntity;
 import com.example.webservice.model.Post;
 import com.example.webservice.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +23,8 @@ public class PostResource {
 
     @GetMapping("/posts")
     public ResponseEntity getAll(){
-        List<Post> result = postService.findAll();
+        List<PostEntity> result = postService.findAll();
         return ResponseEntity.ok(result);
     }
+
 }
