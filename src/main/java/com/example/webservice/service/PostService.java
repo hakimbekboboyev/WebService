@@ -24,7 +24,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<PostEntity> findAll(){
+    public List<Post> findAll(){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<List<Post>> entity = new HttpEntity<>(httpHeaders);
@@ -39,7 +39,7 @@ public class PostService {
             postRepository.save(postEntity);
 
         }
-        return postRepository.findAll();
+        return result;
     }
 
 
