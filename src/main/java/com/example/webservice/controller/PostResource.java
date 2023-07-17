@@ -23,7 +23,8 @@ public class PostResource {
 
     @GetMapping("/posts")
     public ResponseEntity getAll(){
-        List<Post> result = postService.findAll();
+        Object result = postService.findAll();
+
         return ResponseEntity.ok(result);
     }
 
