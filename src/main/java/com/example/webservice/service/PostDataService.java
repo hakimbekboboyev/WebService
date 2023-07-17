@@ -3,7 +3,10 @@ package com.example.webservice.service;
 import com.example.webservice.entity.PostEntity;
 import com.example.webservice.model.Post;
 import com.example.webservice.repository.PostRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +38,10 @@ public class PostDataService {
         }
 
         return postRepository.saveAll(postEntities);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<PostEntity> findAll(Pageable pageable){
+        return postRepository.findAll(pageable);
     }
 }
